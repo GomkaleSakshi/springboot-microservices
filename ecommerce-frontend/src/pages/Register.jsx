@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function Register() {
@@ -17,27 +18,25 @@ function Register() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Get existing users
-    let users = JSON.parse(localStorage.getItem("users")) || [];
+    try {
+      const res = await axios.post(
+        "http://localhost:8081/auth/register",
+        formData
+      );
 
-    // Check if email already exists
-    const exists = users.find((u) => u.email === formData.email);
+      console.log("REGISTER RESPONSE:", res.data);
 
-    if (exists) {
-      alert("User already exists!");
-      return;
+      alert("Registration successful!");
+
+      navigate("/login");
+
+    } catch (error) {
+      console.log("REGISTER ERROR:", error);
+      alert("Registration failed!");
     }
-
-    // Save new user
-    users.push(formData);
-    localStorage.setItem("users", JSON.stringify(users));
-
-    alert("Registration successful!");
-
-    navigate("/login");
   };
 
   return (

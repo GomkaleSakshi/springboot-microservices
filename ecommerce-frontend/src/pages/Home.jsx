@@ -157,13 +157,17 @@ function Home() {
                 ₹ {product.price}
               </p>
 
-              <button
-                onClick={() => addToCart(product)}
-                className="mt-4 bg-black text-white px-4 py-2 rounded-lg w-full hover:bg-gray-800"
-              >
-                Add To Cart
-              </button>
-
+			  <button
+			    onClick={(e) => {
+			      e.stopPropagation();
+			      navigate("/product-details", {
+			        state: product,
+			      });
+			    }}
+			    className="mt-4 bg-black text-white px-4 py-2 rounded-lg w-full hover:bg-gray-800"
+			  >
+			    View Product
+			  </button>
             </div>
 
           ))}

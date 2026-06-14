@@ -21,12 +21,10 @@ function Orders() {
 
 	const savedOrders =
 	   JSON.parse(localStorage.getItem("orders")) || [];
-
-	 if (savedOrders.length > 0) {
-
+       console.log(savedOrders);
 	   setOrders(savedOrders);
 
-	 }
+	 
   
  }, []);
  

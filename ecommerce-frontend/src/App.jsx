@@ -1,32 +1,46 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
-import ProductDetails from "./pages/ProductDetails";
-
-//http://localhost:5173
 
 import Home from "./pages/Home";
-
-//http://localhost:5173/Login
 import Login from "./pages/Login";
-//http://localhost:5173/REgister
 import Register from "./pages/Register";
 import Cart from "./pages/Cart";
 import Orders from "./pages/Orders";
+import ProductDetails from "./pages/ProductDetails";
+
+// ADMIN
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AddProduct from "./pages/admin/AddProduct";
+import UpdateProduct from "./pages/admin/UpdateProduct";
+import DeleteProduct from "./pages/admin/DeleteProduct";
 
 function App() {
   return (
     <BrowserRouter>
-	
-	<Navbar />
+
+      <Navbar />
+
       <Routes>
+
+        {/* PUBLIC ROUTES */}
         <Route path="/" element={<Home />} />
+        <Route path="/product-details" element={<ProductDetails />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+
+        {/* USER ROUTES */}
         <Route path="/cart" element={<Cart />} />
         <Route path="/orders" element={<Orders />} />
-		<Route path="/product-details" element={<ProductDetails />} />
+
+        {/* ADMIN ROUTES */}
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin/add-product" element={<AddProduct />} />
+        <Route path="/admin/update-product" element={<UpdateProduct />} />
+        <Route path="/admin/delete-product" element={<DeleteProduct />} />
+
       </Routes>
+
     </BrowserRouter>
   );
 }
