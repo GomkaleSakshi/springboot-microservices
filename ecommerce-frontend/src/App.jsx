@@ -10,10 +10,10 @@ import Orders from "./pages/Orders";
 import ProductDetails from "./pages/ProductDetails";
 
 // ADMIN
-import AdminDashboard from "./pages/admin/AdminDashboard";
-import AddProduct from "./pages/admin/AddProduct";
-import UpdateProduct from "./pages/admin/UpdateProduct";
-import DeleteProduct from "./pages/admin/DeleteProduct";
+import AdminDashboard from "./pages/Admin/AdminDashboard";
+import AddProduct from "./pages/Admin/AddProduct";
+import UpdateProduct from "./pages/Admin/UpdateProduct";
+import DeleteProduct from "./pages/Admin/DeleteProduct";
 
 function App() {
   return (
