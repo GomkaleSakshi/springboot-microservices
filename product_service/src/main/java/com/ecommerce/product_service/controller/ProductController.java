@@ -15,8 +15,10 @@ import com.ecommerce.product_service.productServices.ProdService;
 @RequestMapping("/product")
 
 //this is for frontend connection with home page
-@CrossOrigin(origins = "http://localhost:5173")
-
+@CrossOrigin(origins = {
+	    "http://localhost:5173",
+	    "https://ecommerce-frontend-qtzz.onrender.com"
+	})
 public class ProductController {
 	@Autowired
 	private ProdService Pserv;
