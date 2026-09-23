@@ -7,7 +7,7 @@ function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://springboot-microservices-api-gateway.onrender.com/product/products")
+    fetch("https://springboot-microservices-product.onrender.com/product/products")
       .then((response) => response.json())
       .then((data) => setProducts(data))
       .catch((error) => console.error("Product API Error:", error));
