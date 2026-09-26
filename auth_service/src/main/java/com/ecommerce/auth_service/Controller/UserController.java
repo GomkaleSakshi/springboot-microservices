@@ -9,7 +9,10 @@ import com.ecommerce.auth_service.dto.LoginRequest;
 import com.ecommerce.auth_service.entity.User;
 
 //frontend connection
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = {
+	    "http://localhost:5173",
+	    "https://ecommerce-frontend-qtzz.onrender.com"
+})
 @RestController
 @RequestMapping("/auth")
 public class UserController {
