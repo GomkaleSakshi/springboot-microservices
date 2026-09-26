@@ -23,24 +23,30 @@ function Register() {
 
     try {
       const res = await axios.post(
-        "http://localhost:8081/auth/register",
+        "https://springboot-microservices-api-gateway.onrender.com/auth/register",
         formData
       );
 
       console.log("REGISTER RESPONSE:", res.data);
 
       alert("Registration successful!");
-
       navigate("/login");
 
     } catch (error) {
-      console.log("REGISTER ERROR:", error);
+      console.error("REGISTER ERROR:", error);
+
+      if (error.response) {
+        console.error("Status:", error.response.status);
+        console.error("Data:", error.response.data);
+      }
+
       alert("Registration failed!");
     }
   };
 
   return (
     <div className="bg-gray-100 min-h-screen flex items-center justify-center">
+
       <form
         onSubmit={handleSubmit}
         className="bg-white p-10 rounded-xl shadow-xl w-96"
@@ -53,6 +59,7 @@ function Register() {
           type="text"
           name="name"
           placeholder="Name"
+          value={formData.name}
           onChange={handleChange}
           className="w-full p-3 mb-4 border rounded"
           required
@@ -62,6 +69,7 @@ function Register() {
           type="email"
           name="email"
           placeholder="Email"
+          value={formData.email}
           onChange={handleChange}
           className="w-full p-3 mb-4 border rounded"
           required
@@ -71,6 +79,7 @@ function Register() {
           type="password"
           name="password"
           placeholder="Password"
+          value={formData.password}
           onChange={handleChange}
           className="w-full p-3 mb-6 border rounded"
           required
@@ -83,6 +92,7 @@ function Register() {
           Register
         </button>
       </form>
+
     </div>
   );
 }
