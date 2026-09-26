@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 function Home() {
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
 
@@ -16,6 +17,7 @@ function Home() {
         if (!response.ok) {
           throw new Error("Failed to fetch products");
         }
+
         return response.json();
       })
       .then((data) => {
@@ -23,6 +25,10 @@ function Home() {
       })
       .catch((error) => {
         console.error("Product API Error:", error);
+        setProducts([]);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, []);
 
@@ -74,12 +80,17 @@ function Home() {
           />
         </div>
 
-        {/* Products Grid */}
+        {/* Products */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-          {filteredProducts.length > 0 ? (
+          {loading ? (
+            <div className="col-span-full text-center py-10">
+              <p className="text-gray-500 text-lg">
+                Loading products...
+              </p>
+            </div>
+          ) : filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
-
               <div
                 key={product.id}
                 className="bg-white p-5 rounded-2xl shadow-md hover:shadow-xl transition duration-300"
@@ -130,16 +141,13 @@ function Home() {
                 </button>
 
               </div>
-
             ))
           ) : (
-
             <div className="col-span-full text-center py-10">
               <p className="text-gray-500 text-lg">
                 No products found.
               </p>
             </div>
-
           )}
 
         </div>
